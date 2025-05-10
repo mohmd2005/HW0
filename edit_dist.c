@@ -1,23 +1,39 @@
-// 123456789
 #include <stdio.h>
 #include <string.h>
+
+//adding libraries
+#include <stdlib.h>
+
 #define MAX_WORD_LEN 100
+
 int edit_dist(char word1[], char word2[]);
+int min(int num1,int num2,int num3);
+
 int main() {
-	char word1[MAX_WORD_LEN], word2[MAX_WORD_LEN];
-	fgets(word1, MAX_WORD_LEN, stdin);
-	word1[strlen(word1) -1] = '\0';
-	fgets(word2, MAX_WORD_LEN, stdin);
-	word2[strlen(word2) -1] = '\0';
-	printf("%d\n", edit_dist(word1, word2));
-	return (0);
+    char word1[MAX_WORD_LEN], word2[MAX_WORD_LEN];
+
+    fgets(word1, MAX_WORD_LEN, stdin);
+    word1[strlen(word1) - 1] = '\0';
+    fgets(word2, MAX_WORD_LEN, stdin);
+    word2[strlen(word2) - 1] = '\0';
+
+    printf("%d\n", edit_dist(word1, word2));
+
+    return (0);
 }
+int min(int num1,int num2,int num3){
+    if(num1<num2 && num1<num3) return num1;
+    if(num2<num3) return num2;
+    return num3;
+}
+
 int edit_dist(char word1[], char word2[]) {
+    /* YOUR CODE HERE */
     int m = strlen(word1);
     int n = strlen(word2);
 
     // Create a DP matrix of size (m+1) x (n+1)
-    int *dp = (int *)malloc((m+1) * sizeof(int *));
+    int **dp = (int **)malloc((m+1) * sizeof(int *));
     for (int i = 0; i <= m; i++) {
         dp[i] = (int *)malloc((m+1) * sizeof(int));
     }
@@ -46,5 +62,6 @@ int edit_dist(char word1[], char word2[]) {
         free(dp[i]);
     free(dp);
 
-    return result;
+    return result;
+
 }
