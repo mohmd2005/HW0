@@ -1,7 +1,7 @@
 #!/bin/bash
 
 readarray -t urls < <(
-  wget -q -O - "https://www.ynetnews.com/category/3082" |  grep -oE 'https://www\.ynetnews\.com/article/[A-Za-z0-9]+'
+  wget "https://www.ynetnews.com/category/3082" |  grep -oE 'https://www\.ynetnews\.com/article/[A-Za-z0-9]+'
 )
 
 declare -A seen
